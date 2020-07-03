@@ -1,7 +1,7 @@
 /*
  * @Author: xiaoboya
  * @Date: 2020-06-19 16:03:52
- * @LastEditTime: 2020-06-20 12:44:48
+ * @LastEditTime: 2020-07-03 21:48:47
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /MyDiskClient/main.go
@@ -11,7 +11,6 @@ package main
 
 import (
 	"MyDiskClient/utils"
-	"fmt"
 	"net"
 )
 
@@ -20,6 +19,6 @@ var SRCADDR = &net.UDPAddr{IP: net.IPv4zero, Port: 7611}
 
 func main() {
 	utils.Init()
-	var msg = utils.Login("xiaoboya", "root1234")
-	fmt.Println(msg)
+	// var msg = core.Login("xiaoboya", "root1234")
+	// fmt.Println(msg)
 }
