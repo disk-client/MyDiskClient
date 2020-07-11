@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-07-03 21:31:58
- * @LastEditTime: 2020-07-03 21:53:57
+ * @LastEditTime: 2020-07-03 22:01:51
  * @LastEditors: Please set LastEditors
  * @Description: 初始时建立链接
  * @FilePath: /MyDiskClient/core/initConnect.go
@@ -60,7 +60,7 @@ func connectControl(username string) error {
 	return nil
 }
 
-// Lighthouse 登陆代码
+// Lighthouse 登陆代码（在管理端认证通过之后向转发点注册自己的客户端信息）
 func Lighthouse(username, cred string) (flag bool) {
 	flag = false
 	var msg = login(username, cred)

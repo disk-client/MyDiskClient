@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-06-20 17:37:54
- * @LastEditTime: 2020-06-20 17:38:37
+ * @LastEditTime: 2020-07-11 17:00:08
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /MyDiskClient/conf/params.go
@@ -26,3 +26,6 @@ var LogLev = map[string]int{
 	"ERROR": 3,
 	"CRIT":  4,
 }
+
+// TargetAddr 目标地址
+const TargetAddr = "47.92.149.230:8087"
