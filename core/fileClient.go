@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-07-11 16:46:29
- * @LastEditTime: 2020-07-11 21:38:08
+ * @LastEditTime: 2020-07-13 21:57:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /MyDiskClient/core/fileClient.go
@@ -13,6 +13,7 @@ import (
 	"MyDiskClient/conf"
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 )
@@ -23,11 +24,18 @@ func sendPostRequest(url string, params interface{}) (resp *http.Response) {
 		return nil
 	}
 	buffer := bytes.NewBuffer(jsonstr)
-	req, err := http.NewRequest("POST", conf.TargetAddr+url, buffer)
+	req, err := http.NewRequest("POST", "http://"+conf.TargetAddr+url, buffer)
+	if err != nil {
+		fmt.Println(err)
+		resp.Body.Close()
+		fmt.Println("connect error")
+		return nil
+	}
 	req.Header.Set("Content-Type", "application/json;charset=UTF-8") //添加请求头
 	resp, err = http.DefaultClient.Do(req)
 	if err != nil {
 		resp.Body.Close()
+		fmt.Println("connect error2")
 		return nil
 	}
 	return
@@ -67,14 +75,21 @@ func GetDirList(path string) (res NullResponse) {
 		"path": path,
 	}
 	var resp = sendPostRequest(urlPath, postData)
+	fmt.Println(1111)
 	if resp == nil {
+		fmt.Println("no……")
 		return
 	}
 	defer resp.Body.Close()
 	respBytes, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+	fmt.Println(string(respBytes))
 	var result DirInfo
 	err = json.Unmarshal(respBytes, &result)
 	if err != nil {
+		fmt.Println("Unmarshal err")
 		return
 	}
 	res.Response = result
