@@ -1,7 +1,7 @@
 /*
  * @Author: xiaoboya
  * @Date: 2020-06-19 16:03:52
- * @LastEditTime: 2020-07-13 21:41:21
+ * @LastEditTime: 2020-07-21 20:50:13
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /MyDiskClient/main.go
@@ -13,6 +13,7 @@ import (
 	"MyDiskClient/core"
 	"fmt"
 	"net"
+	"time"
 )
 
 // SRCADDR UDP服务路径
@@ -22,6 +23,7 @@ func main() {
 	// utils.Init()
 	var msg = core.Lighthouse("xiaoboya", "root1234")
 	fmt.Println(msg)
+	time.Sleep(1 * time.Second)
 	var v = core.GetDirList("./")
 	fmt.Println(v)
 }
