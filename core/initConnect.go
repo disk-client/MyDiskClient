@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-07-03 21:31:58
- * @LastEditTime: 2020-07-25 10:01:57
+ * @LastEditTime: 2020-07-25 15:02:33
  * @LastEditors: Please set LastEditors
  * @Description: 初始时建立链接
  * @FilePath: /MyDiskClient/core/initConnect.go
@@ -63,7 +63,10 @@ func connectControl(username string) error {
 		fmt.Println("encrypt error ! " + err.Error())
 		return err
 	}
-	conn.Write(encrypted)
+	_, err = conn.Write(encrypted)
+	if err != nil {
+		fmt.Println(err)
+	}
 	fmt.Println(conn.LocalAddr().String() + " : Client connected success!")
 	return nil
 }
