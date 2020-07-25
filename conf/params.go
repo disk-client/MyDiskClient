@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-06-20 17:37:54
- * @LastEditTime: 2020-07-11 17:00:08
+ * @LastEditTime: 2020-07-24 16:38:26
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /MyDiskClient/conf/params.go
@@ -29,3 +29,6 @@ var LogLev = map[string]int{
 
 // TargetAddr 目标地址
 const TargetAddr = "47.92.149.230:8087"
+
+// AesKey 对称加密密钥
+var AesKey = []byte("0f90023fc9ae101e")

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-07-03 21:31:58
- * @LastEditTime: 2020-07-13 21:39:43
+ * @LastEditTime: 2020-07-25 10:01:57
  * @LastEditors: Please set LastEditors
  * @Description: 初始时建立链接
  * @FilePath: /MyDiskClient/core/initConnect.go
@@ -10,6 +10,7 @@
 package core
 
 import (
+	"MyDiskClient/conf"
 	"MyDiskClient/utils"
 	"bytes"
 	"encoding/json"
@@ -17,6 +18,7 @@ import (
 	"io/ioutil"
 	"net"
 	"net/http"
+	"time"
 )
 
 // Login 登陆客户端
@@ -55,7 +57,13 @@ func connectControl(username string) error {
 		fmt.Println("Client connect error ! " + err.Error())
 		return err
 	}
-	conn.Write([]byte(username))
+	var content = "CLIENT" + time.Now().Format("2006-01-02 15:04:05") + "||" + username
+	encrypted, err := utils.AesEncrypt([]byte(content), conf.AesKey)
+	if err != nil {
+		fmt.Println("encrypt error ! " + err.Error())
+		return err
+	}
+	conn.Write(encrypted)
 	fmt.Println(conn.LocalAddr().String() + " : Client connected success!")
 	return nil
 }
